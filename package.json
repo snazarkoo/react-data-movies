@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "description": "react-data-movies",
   "scripts": {
-    "prestart": "babel-node tools/startMessage.js",
-    "start": "npm-run-all --parallel test:watch open:src lint:watch",
+    "start": "npm-run-all --parallel open:src lint:watch",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
-    "lint:watch": "npm run lint -- --watch",
-    "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "lint:watch": "npm run lint -- --watch"
   },
   "dependencies": {
     "babel-polyfill": "6.8.0",
@@ -35,6 +32,7 @@
     "compression": "^1.6.1",
     "cross-env": "1.0.7",
     "css-loader": "0.23.1",
+    "eventsource-polyfill": "0.9.6",
     "eslint": "2.9.0",
     "eslint-plugin-import": "1.6.1",
     "eslint-plugin-react": "5.0.1",
