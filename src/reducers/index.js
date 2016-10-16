@@ -4,13 +4,15 @@ import movie from './movieReducer';
 import bestMovies from './bestMoviesReducer';
 import discoveredMovies from './discoveredMoviesReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
+import comments from './commentsReducer';
 
 const rootReducer = combineReducers({
   movies,
   movie,
   ajaxCallsInProgress,
   discoveredMovies,
-  bestMovies
+  bestMovies,
+  comments
 });
 
 export default rootReducer;

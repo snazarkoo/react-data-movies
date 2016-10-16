@@ -1,18 +1,25 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 import * as filmsActions from '../../actions/filmAction';
+import * as commentActions from '../../actions/commentActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import ImageEl from '../common/ImageEl.js'
+import ImageEl from '../common/ImageEl.js';
+import CommentList from './CommentList.js';
 
 class MoviePage extends React.Component {
   componentWillMount() {
-    this.props.actions.loadMovie(this.props.routeParams.id);
+    this.getData();
   }
   componentWillUpdate(nextProps) {
     if (nextProps.routeParams.id !== this.props.routeParams.id) {
-      this.props.actions.loadMovie(nextProps.routeParams.id);
+      this.getData();
     }
+  }
+  getData() {
+    const movieId = this.props.routeParams.id;
+    this.props.movieActions.loadMovie(movieId);
+    this.props.commentActions.loadComments(movieId);
   }
   render() {
     let content;
@@ -37,12 +44,13 @@ class MoviePage extends React.Component {
             <div className="double-bounce2"></div>
           </div>
         </div>
-      )
+      );
     }
     return (
       <div className="movie-page">
         <div className="wrap row">
           {content}
+          <CommentList comments={this.props.comments} />
         </div>
       </div>
     );
@@ -50,23 +58,27 @@ class MoviePage extends React.Component {
 }
 
 MoviePage.propTypes = {
-  actions: PropTypes.object.isRequired,
+  movieActions: PropTypes.object.isRequired,
+  commentActions: PropTypes.object.isRequired,
   routeParams: PropTypes.object.isRequired,
   movie: PropTypes.object.isRequired,
-  callEnd: PropTypes.bool.isRequired
+  callEnd: PropTypes.bool.isRequired,
+  comments: PropTypes.array.isRequired
 };
 
 
 function mapStateToProps(state, ownProps) {
   return {
     movie: state.movie,
-    callEnd: state.ajaxCallsInProgress === 0
+    callEnd: state.ajaxCallsInProgress === 0,
+    comments: state.comments
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(filmsActions, dispatch)
+    movieActions: bindActionCreators(filmsActions, dispatch),
+    commentActions: bindActionCreators(commentActions, dispatch)
   };
 }
 
