@@ -7,7 +7,7 @@ export function loadCommentsSuccess(comments) {
 }
 
 export function createCommentSuccess(comment) {
-  return {type: types.LOAD_COMMENTS_SUCCESS, comment};
+  return {type: types.CREATE_COMMENT_SUCCESS, comment};
 }
 
 export function loadComments(movieId) {

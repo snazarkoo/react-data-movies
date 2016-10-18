@@ -50,8 +50,13 @@ class MoviePage extends React.Component {
 
     this.props.commentActions.createComment(this.props.routeParams.id, this.state.comment)
       .done(() => {
-        console.log('success')
-        this.setState({saving: false});
+        debugger;
+        let comment = this.state.comment;
+        comment.text = '';
+        this.setState({
+          saving: false,
+          comment
+        });
       })
       .fail(error => {
         // toastr.error(error);
@@ -105,6 +110,7 @@ class MoviePage extends React.Component {
         <div className="wrap row">
           {content}
           <CommentForm
+            text={this.state.comment.text}
             onSave={this.createComment}
             saving={this.state.saving}
             onChange={this.updateCommentState} />

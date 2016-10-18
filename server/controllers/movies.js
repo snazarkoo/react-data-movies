@@ -81,14 +81,13 @@ exports.addCommentByMovieId = function(req, res, next) {
             }
             var movie = new Movie(movieBody);
             movie.save(function(err) {
-                console.log(movie);
-                res.json(movie);
+                res.json(movie.comments[movie.comments.length - 1]);
                 return next(err)
             });
         } else {
             movie.comments.push(req.body);
             movie.save(function(err) {
-                res.json(movie);
+                res.json(movie.comments[movie.comments.length - 1]);
             });
         }
     });
