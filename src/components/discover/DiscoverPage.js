@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Link, browserHistory} from 'react-router';
-import * as videoActions from '../../actions/filmAction';
+import * as videoActions from '../../actions/movieActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import ListEl from '../common/ListEl';
@@ -89,7 +89,7 @@ class DiscoverPage extends React.Component {
             <div className="double-bounce2"></div>
           </div>
         </div>
-      )
+      );
     }
     
     return (
@@ -111,8 +111,8 @@ class DiscoverPage extends React.Component {
           <div className="column medium-4">
             <label htmlFor="sortBy">Sort By</label>
             <select value={this.state.movie.sortBy} onChange={this.onSortByChange}>
-              <option key={1} value='desc'>Popularity Descending</option>
-              <option key={2} value='asc'>Popularity Ascending</option>
+              <option key={1} value="desc">Popularity Descending</option>
+              <option key={2} value="asc">Popularity Ascending</option>
             </select>
           </div>
         </div>

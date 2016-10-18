@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import * as videoActions from '../../actions/filmAction';
+import * as videoActions from '../../actions/movieActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import ListEl from '../common/ListEl';

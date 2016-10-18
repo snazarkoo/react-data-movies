@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import * as videoActios from '../../actions/filmAction';
+import * as videoActios from '../../actions/movieActions';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -46,7 +46,7 @@ class Header extends React.Component {
       this.setState({
         isShowDropdown: false
       });
-    })
+    });
   }
   render() {
     let dropDownList;
