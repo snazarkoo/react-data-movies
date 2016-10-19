@@ -1,9 +1,12 @@
 import React, {PropTypes} from 'react';
-import * as videoActios from '../../actions/movieActions';
+import * as movieActions from '../../actions/movieActions';
+import * as authActions from '../../actions/authActions';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import ListEl from '../common/ListEl';
+import Login from './Login';
+import Logout from './Logout';
 
 class Header extends React.Component {
   constructor(props, context) {
@@ -13,12 +16,30 @@ class Header extends React.Component {
       video: {
         title: ''
       },
+      cred: {
+        username: '',
+        password: ''
+      },
       isShowDropdown: false
     };
     this.delayTimer;
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
+    this.onLoginClick = this.onLoginClick.bind(this);
+    this.updateCredState = this.updateCredState.bind(this);
+  }
+  onLoginClick(event) {
+    event.preventDefault();
+    const { cred } = this.state;
+    debugger;
+    this.props.authActions.loginUser(cred);
+  }
+  updateCredState(event) {
+    const field = event.target.name;
+    let cred = this.state.cred;
+    cred[field] = event.target.value;
+    return this.setState({cred});
   }
   onSearchChange(event) {
     let video = this.state.video;
@@ -30,10 +51,10 @@ class Header extends React.Component {
       clearTimeout(this.delayTimer);
     if (video.title) {
       this.delayTimer = setTimeout(() => {
-        this.props.actions.loadMovies(this.state.video.title);
+        this.props.movieActions.loadMovies(this.state.video.title);
       }, delay);
     } else {
-      this.props.actions.loadMoviesSuccess([]);
+      this.props.movieActions.loadMoviesSuccess([]);
     }
   }
   onFocus() {
@@ -49,6 +70,8 @@ class Header extends React.Component {
     });
   }
   render() {
+    const {isAuthenticated, errorMessage, authActions} = this.props;
+
     let dropDownList;
     if (this.props.movies && this.props.movies.length > 0) {
       dropDownList = this.props.movies.map((movie) => {
@@ -76,6 +99,16 @@ class Header extends React.Component {
               </ul>
             </div>
             <div className="top-bar-right">
+               {!isAuthenticated &&
+                 <Login
+                   onChange={this.updateCredState}
+                   errorMessage={errorMessage}
+                   onLoginClick={this.onLoginClick} />
+               }
+               
+               {isAuthenticated &&
+                 <Logout onLogoutClick={authActions.logoutUser()} />
+               }
               <ul className="menu">
                 <li><a href="#">Login In</a></li>
                 <li><a href="#">Sign Up</a></li>
@@ -99,15 +132,17 @@ class Header extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
     );
   }
 }
 
 Header.propTypes = {
-  actions: PropTypes.object.isRequired,
-  movies: PropTypes.array
+  movieActions: PropTypes.object,
+  authActions: PropTypes.object,
+  movies: PropTypes.array,
+  isAuthenticated: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string
 };
 
 function mapStateToProps(state, ownProps) {
@@ -118,7 +153,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(videoActios, dispatch)
+    movieActions: bindActionCreators(movieActions, dispatch),
+    authActions: bindActionCreators(authActions, dispatch)
   };
 }
 

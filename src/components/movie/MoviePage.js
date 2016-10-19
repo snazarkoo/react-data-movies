@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
-import * as filmsActions from '../../actions/movieActions';
 import * as commentActions from '../../actions/commentActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -141,7 +140,6 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    movieActions: bindActionCreators(filmsActions, dispatch),
     commentActions: bindActionCreators(commentActions, dispatch)
   };
 }

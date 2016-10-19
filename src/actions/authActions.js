@@ -48,7 +48,7 @@ function receiveLogout() {
 // Calls the API to get a token and
 // dispatches actions along the way
 export function loginUser(creds) {
-  
+  debugger;
   let config = {
     method: 'POST',
     headers: { 'Content-Type':'application/x-www-form-urlencoded' },
@@ -76,7 +76,9 @@ export function loginUser(creds) {
           // Dispatch the success action
           dispatch(receiveLogin(user))
         }
-      }).catch(err => console.log("Error: ", err))
+      }).catch(err => {
+        console.log("Error: ", err)
+      })
   }
 }
 

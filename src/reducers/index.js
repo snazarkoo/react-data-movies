@@ -5,6 +5,7 @@ import bestMovies from './bestMoviesReducer';
 import discoveredMovies from './discoveredMoviesReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
 import comments from './commentsReducer';
+import auth from './authReducer';
 
 const rootReducer = combineReducers({
   movies,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   ajaxCallsInProgress,
   discoveredMovies,
   bestMovies,
-  comments
+  comments,
+  auth
 });
 
 export default rootReducer;
