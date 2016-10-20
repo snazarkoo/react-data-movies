@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
+import * as movieActions from '../../actions/movieActions';
 import * as commentActions from '../../actions/commentActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -49,7 +50,6 @@ class MoviePage extends React.Component {
 
     this.props.commentActions.createComment(this.props.routeParams.id, this.state.comment)
       .done(() => {
-        debugger;
         let comment = this.state.comment;
         comment.text = '';
         this.setState({
@@ -140,6 +140,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    movieActions: bindActionCreators(movieActions, dispatch),
     commentActions: bindActionCreators(commentActions, dispatch)
   };
 }

@@ -5,9 +5,17 @@
   "author": {
     "name": "Anastasiia Sokolova"
   },
+  "scripts": {
+    "serve": "nodemon server.js"
+  },
   "dependencies": {
     "body-parser": "1.15.2",
     "express": "4.14.0",
-    "mongoose": "~4.6.1"
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "~4.6.1",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

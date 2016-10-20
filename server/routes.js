@@ -1,10 +1,12 @@
+var movieCtrls = require('./controllers/movieCtrls');
+var authCtrls = require('./controllers/authCtrls');
+
 module.exports = function(app){
-    var movies = require('./controllers/movies');
-    app.get('/movie/:id/comments', movies.findCommentsByMovieId);
-    app.post('/movie/:id/comment', movies.addCommentByMovieId);
-    app.get('/import', movies.import);
-    // app.get('/employees', employees.findAll);
-    // app.put('/employees/:id', employees.update);
-    // app.delete('/employees/:id', employees.delete);
+    app.get('/movie/:id/comments', movieCtrls.findCommentsByMovieId);
+    app.post('/movie/:id/comment', movieCtrls.addCommentByMovieId);
+    app.get('/import', movieCtrls.import);
+    //auth routes
+    app.post('/signup', authCtrls.signup);
+    app.post('/authenticate', authCtrls.authenticate);
 }
 

@@ -1,12 +1,14 @@
 var express = require('express');
-var bodyParser = require('body-parser')
-mongoose = require('mongoose');
+var bodyParser  = require('body-parser');
+var morgan = require('morgan');
+var mongoose = require('mongoose');
+var config = require('./config'); // get our config file
+var User = require('./models/userModel'); // get our mongoose model
 
-
-
-var mongoUri = 'mongodb://localhost/movies';
-mongoose.connect(mongoUri);
 var app = express();
+var port = process.env.PORT || 8000; // used to create, sign, and verify tokens
+mongoose.connect(config.DB); // connect to database
+app.use(morgan('dev'));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -15,19 +17,14 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-//app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
 
-
-
-require('./models/movies');
 require('./routes')(app);
 
 
 
-app.listen(8000);
-console.log('Listening on port 8000...');
+app.listen(port);
+console.log('Listening on port ' + port +'...');

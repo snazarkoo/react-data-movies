@@ -1,7 +1,5 @@
-var mongoose = require('mongoose'),
-    Movie = mongoose.model('Movie');
-
-
+var mongoose = require('mongoose');
+var Movie = require('../models/movieModel');
 
 exports.import = function(req, res) {
     Movie.create({
