@@ -1,6 +1,6 @@
 // The middleware to call the API for quotes
 // import { CALL_API } from './middleware/api'
-import * as types from './actionTypes';
+import * as types from '../constants/actionTypesConst';
 
 function requestLogin(creds) {
   return {
@@ -48,7 +48,6 @@ function receiveLogout() {
 // Calls the API to get a token and
 // dispatches actions along the way
 export function loginUser(creds) {
-  debugger;
   let config = {
     method: 'POST',
     headers: { 'Content-Type':'application/x-www-form-urlencoded' },

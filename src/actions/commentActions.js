@@ -1,5 +1,5 @@
-import * as types from './actionTypes';
-import * as api from '../api/apiConst';
+import * as types from '../constants/actionTypesConst';
+import * as api from '../constants/urlConst';
 import {beginAjaxCall} from './ajaxStatusActions.js';
 
 export function loadCommentsSuccess(comments) {
@@ -13,7 +13,7 @@ export function createCommentSuccess(comment) {
 export function loadComments(movieId) {
   return function(dispatch) {
     return $.ajax({
-      url: `http:////localhost:8000/movie/${movieId}/comments`,
+      url: `$(api.BASE_URL_CUSTOM)${movieId}/comments`,
       type: 'get',
       success: function(data) {
         let comments = data;
@@ -29,7 +29,7 @@ export function loadComments(movieId) {
 export function createComment(movieId, commentConf) {
   return function(dispatch) {
     return $.ajax({
-      url: `http:////localhost:8000/movie/${movieId}/comment`,
+      url: `$(api.BASE_URL_CUSTOM)${movieId}/comment`,
       type: 'post',
       data: JSON.stringify(commentConf),
       contentType: "application/json",

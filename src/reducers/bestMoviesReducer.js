@@ -1,4 +1,4 @@
-import * as types from '../actions/actionTypes';
+import * as types from '../constants/actionTypesConst';
 
 export default function loadBestMoviesReducer(state = [], action) {
   switch (action.type) {

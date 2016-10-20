@@ -1,4 +1,4 @@
-import * as types from './actionTypes';
+import * as types from '../constants/actionTypesConst';
 
 export function beginAjaxCall() {
   return {type: types.BEGIN_AJAX_CALL};

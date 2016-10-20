@@ -32,7 +32,6 @@ class Header extends React.Component {
   onLoginClick(event) {
     event.preventDefault();
     const { cred } = this.state;
-    debugger;
     this.props.authActions.loginUser(cred);
   }
   updateCredState(event) {

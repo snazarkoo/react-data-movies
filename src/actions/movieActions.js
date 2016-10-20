@@ -1,5 +1,6 @@
-import * as types from './actionTypes';
-import * as api from '../api/apiConst';
+import * as types from '../constants/actionTypesConst';
+import * as api from '../constants/urlConst';
+import * as conf from '../constants/confConst';
 import {beginAjaxCall} from './ajaxStatusActions.js';
 
 export function loadMoviesSuccess(movies) {
@@ -24,7 +25,7 @@ export function loadMovies(filmTilte) {
       url: `${api.BASE_URL}${api.URL_SEARCH_MOVIE}`,
       type: 'get',
       data: {
-        api_key: api.API_KEY,
+        api_key: conf.API_KEY,
         query: filmTilte,
         language: 'en-US'
       },
@@ -46,7 +47,7 @@ export function loadDiscoveredMovies(year=2016, page=1) {
       url: `${api.BASE_URL}${api.URL_DISCOVER_MOVIE}`,
       type: 'get',
       data: {
-        api_key: api.API_KEY,
+        api_key: conf.API_KEY,
         language: 'en-US',
         year,
         page
@@ -68,7 +69,7 @@ export function loadBestMovies() {
       url: `${api.BASE_URL}${api.URL_DISCOVER_MOVIE}`,
       type: 'get',
       data: {
-        api_key: api.API_KEY,
+        api_key: conf.API_KEY,
         primary_release_year: '2016',
         sort_by: 'vote_average.desc'
       },
