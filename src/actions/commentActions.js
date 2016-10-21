@@ -13,7 +13,7 @@ export function createCommentSuccess(comment) {
 export function loadComments(movieId) {
   return function(dispatch) {
     return $.ajax({
-      url: `${api.BASE_URL_CUSTOM}${movieId}/comments`,
+      url: `${api.BASE_URL_CUSTOM}movie/${movieId}/comments`,
       type: 'get',
       success: function(data) {
         let comments = data;
@@ -26,10 +26,13 @@ export function loadComments(movieId) {
   };
 }
 
-export function createComment(movieId, commentConf) {
+export function createComment(movieId, commentConf={}) {
+  const user = JSON.parse(localStorage.getItem('user'));
+  delete user.id_token;
+  commentConf.user = user;
   return function(dispatch) {
     return $.ajax({
-      url: `${api.BASE_URL_CUSTOM}${movieId}/comment`,
+      url: `${api.BASE_URL_CUSTOM}movie/${movieId}/comment`,
       type: 'post',
       data: JSON.stringify(commentConf),
       contentType: "application/json",

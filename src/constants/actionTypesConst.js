@@ -11,9 +11,9 @@ export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS';
 export const CREATE_COMMENT_SUCCESS = 'CREATE_COMMENT_SUCCESS';
 
 // States for login process
-export const LOGIN_REQUEST = 'LOGIN_REQUEST'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const AUTH_REQUEST = 'AUTH_REQUEST'
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_FAILURE = 'AUTH_FAILURE'
 
 // States for logout process
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'

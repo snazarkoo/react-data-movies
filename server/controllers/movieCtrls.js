@@ -1,59 +1,6 @@
 var mongoose = require('mongoose');
 var Movie = require('../models/movieModel');
 
-exports.import = function(req, res) {
-    Movie.create({
-      id: 271110,
-      comments: [{
-          id: 1,
-          user: {
-              userId: 'userId1',
-              firstName: 'John',
-              lastName: 'Clisby'
-          },
-          text: 'First Comment'
-      }]
-  }, {
-      id: 271111,
-      comments: [{
-          id: 1,
-          user: {
-              userId: 'userId2',
-              firstName: 'John',
-              lastName: 'Clisby'
-          },
-          text: 'First Comment'
-      }]
-  }, {
-      id: 271112,
-      comments: [{
-          id: 1,
-          user: {
-              userId: 'userId3',
-              firstName: 'John',
-              lastName: 'Clisby'
-          },
-          text: 'First Comment'
-      }]
-  }, {
-      id: 271113,
-      comments: [{
-          id: 1,
-          user: {
-              userId: 'userId4',
-              firstName: 'John',
-              lastName: 'Clisby'
-          },
-          text: 'First Comment'
-      }]
-  },
-  function(err) {
-      if (err) return console.log(err);
-      return res.send(202);
-        });
-};
-
-
 exports.findCommentsByMovieId = function(req, res) {
     var id = req.params.id;
     Movie.findOne({
@@ -67,7 +14,6 @@ exports.findCommentsByMovieId = function(req, res) {
 };
 
 exports.addCommentByMovieId = function(req, res, next) {
-    console.log("1");
     var id = req.params.id;
     Movie.findOne({
         'id': id

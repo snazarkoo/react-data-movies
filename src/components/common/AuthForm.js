@@ -1,21 +1,29 @@
 import React, { PropTypes } from 'react';
 
-const Login = ({onLoginClick, errorMessage, onChange}) => {
+const Login = ({onLoginClick, onSignUpClick, errorMessage, onChange}) => {
   return (
     <form>
       <input type="text" name="username"
         className="form-control"
         placeholder="Username"
-        onChange={onChange} />
-      <input type="text" name="password"
+        pattern="[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]"
+        onChange={onChange}
+        required />
+      <input type="password" name="password"
         className="form-control"
         placeholder="Username"
-        onChange={onChange} />
+        onChange={onChange} 
+        required />
       <input
-        type="submit"
+        type="button"
         onClick={onLoginClick}
         className="btn btn-primary"
         value="Login" />
+      <input
+        type="button"
+        onClick={onSignUpClick}
+        className="btn btn-primary"
+        value="Sign Up" />
       {errorMessage &&
         <p style={{color:"red"}}>{errorMessage}</p>
       }
@@ -25,6 +33,7 @@ const Login = ({onLoginClick, errorMessage, onChange}) => {
 
 Login.propTypes = {
   onLoginClick: PropTypes.func.isRequired,
+  onSignUpClick: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
   onChange: PropTypes.func
 };

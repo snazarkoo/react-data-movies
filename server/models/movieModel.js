@@ -6,11 +6,10 @@ var MovieSchema = new Schema({
   comments: [{
     user: {
       userId: String,
-      firstName: String,
-      lastName: String
+      username: String
     },
     text: String,
-    updated_at: {
+    updatedAt: {
       type: Date,
       default: Date.now
     },

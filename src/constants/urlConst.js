@@ -5,4 +5,4 @@ export const URL_SEARCH_MOVIE = 'search/movie';
 export const URL_DISCOVER_MOVIE = 'discover/movie';
 
 //Custom API
-export const BASE_URL_CUSTOM = 'http:////localhost:8000/movie/';
+export const BASE_URL_CUSTOM = 'http:////localhost:8000/';

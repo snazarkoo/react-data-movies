@@ -1,8 +1,9 @@
-const BASE_URL = 'http://localhost:3001/api/'
+const BASE_URL = 'http://localhost:3001/api/';
+const user = JSON.parse(localStorage.getItem('user'));
 
 function callApi(endpoint, authenticated) {
   
-  let token = localStorage.getItem('id_token') || null
+  let token = user && user.id_token || null
   let config = {}
   
   if(authenticated) {

@@ -5,13 +5,12 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import ListEl from '../common/ListEl';
-import Login from './Login';
+import AuthForm from './AuthForm';
 import Logout from './Logout';
 
 class Header extends React.Component {
   constructor(props, context) {
     super(props, context);
-
     this.state = {
       video: {
         title: ''
@@ -27,6 +26,8 @@ class Header extends React.Component {
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onLoginClick = this.onLoginClick.bind(this);
+    this.onLogoutClick = this.onLogoutClick.bind(this);
+    this.onSignUpClick = this.onSignUpClick.bind(this);
     this.updateCredState = this.updateCredState.bind(this);
   }
   onLoginClick(event) {
@@ -34,11 +35,19 @@ class Header extends React.Component {
     const { cred } = this.state;
     this.props.authActions.loginUser(cred);
   }
+  onSignUpClick(event) {
+    event.preventDefault();
+    const { cred } = this.state;
+    this.props.authActions.signUpUser(cred);
+  }
+  onLogoutClick() {
+    this.props.authActions.logoutUser()
+  }
   updateCredState(event) {
     const field = event.target.name;
     let cred = this.state.cred;
     cred[field] = event.target.value;
-    return this.setState({cred});
+    this.setState({cred});
   }
   onSearchChange(event) {
     let video = this.state.video;
@@ -99,19 +108,16 @@ class Header extends React.Component {
             </div>
             <div className="top-bar-right">
                {!isAuthenticated &&
-                 <Login
+                 <AuthForm
                    onChange={this.updateCredState}
                    errorMessage={errorMessage}
-                   onLoginClick={this.onLoginClick} />
+                   onLoginClick={this.onLoginClick}
+                   onSignUpClick={this.onSignUpClick} />
                }
                
                {isAuthenticated &&
-                 <Logout onLogoutClick={authActions.logoutUser()} />
+                 <Logout onLogoutClick={this.onLogoutClick} />
                }
-              <ul className="menu">
-                <li><a href="#">Login In</a></li>
-                <li><a href="#">Sign Up</a></li>
-              </ul>
             </div>
           </div>
         </div>

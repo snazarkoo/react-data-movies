@@ -1,9 +1,9 @@
 {
-  "name": "employee-server",
-  "description": "Server for employee app",
+  "name": "server",
+  "description": "Server",
   "version": "1.0.0",
   "author": {
-    "name": "Anastasiia Sokolova"
+    "name": ""
   },
   "scripts": {
     "serve": "nodemon server.js"

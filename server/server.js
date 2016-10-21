@@ -24,7 +24,5 @@ app.use(bodyParser.urlencoded({
 
 require('./routes')(app);
 
-
-
 app.listen(port);
 console.log('Listening on port ' + port +'...');

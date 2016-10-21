@@ -15,12 +15,7 @@ class MoviePage extends React.Component {
     this.state = {
       saving: false,
       comment: {
-        text: '',
-        user: {
-          userId: 'userId',
-          firstName: 'Max',
-          lastName: 'Mad'
-        }
+        text: ''
       }
     };
     this.updateCommentState = this.updateCommentState.bind(this);
@@ -112,7 +107,8 @@ class MoviePage extends React.Component {
             text={this.state.comment.text}
             onSave={this.createComment}
             saving={this.state.saving}
-            onChange={this.updateCommentState} />
+            onChange={this.updateCommentState} 
+            isAuthenticated={this.props.isAuthenticated} />
           <CommentList comments={this.props.comments} />
         </div>
       </div>
@@ -126,7 +122,8 @@ MoviePage.propTypes = {
   routeParams: PropTypes.object.isRequired,
   movie: PropTypes.object.isRequired,
   callEnd: PropTypes.bool.isRequired,
-  comments: PropTypes.array.isRequired
+  comments: PropTypes.array.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 
@@ -134,7 +131,8 @@ function mapStateToProps(state, ownProps) {
   return {
     movie: state.movie,
     callEnd: state.ajaxCallsInProgress === 0,
-    comments: state.comments
+    comments: state.comments,
+    isAuthenticated: state.auth.isAuthenticated
   };
 }
 
