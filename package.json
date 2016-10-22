@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "react-data-movies",
   "scripts": {
-    "start": "npm-run-all --parallel open:src lint:watch",
+    "start": "nf start -p 3000",
+    "server": "npm-run-all --parallel open:src",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
@@ -12,11 +13,14 @@
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-dist build:html",
     "build": "babel-node tools/build.js",
-    "postbuild": "babel-node tools/distServer.js"
+    "postbuild": "babel-node tools/distServer.js",
+    "postinstall": "build"
   },
   "dependencies": {
     "babel-polyfill": "6.8.0",
+    "foreman": "^2.0.0",
     "foundation-sites": "^6.2.3",
+    "http-proxy": "^1.15.2",
     "jquery": "2.2.3",
     "react": "15.0.2",
     "react-dom": "15.0.2",

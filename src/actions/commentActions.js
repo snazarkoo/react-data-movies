@@ -13,7 +13,7 @@ export function createCommentSuccess(comment) {
 export function loadComments(movieId) {
   return function(dispatch) {
     return $.ajax({
-      url: `${api.BASE_URL_CUSTOM}movie/${movieId}/comments`,
+      url: `/api/movie/${movieId}/comments`,
       type: 'get',
       success: function(data) {
         let comments = data;
@@ -32,7 +32,7 @@ export function createComment(movieId, commentConf={}) {
   commentConf.user = user;
   return function(dispatch) {
     return $.ajax({
-      url: `${api.BASE_URL_CUSTOM}movie/${movieId}/comment`,
+      url: `/api/movie/${movieId}/comment`,
       type: 'post',
       data: JSON.stringify(commentConf),
       contentType: "application/json",

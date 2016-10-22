@@ -5,8 +5,9 @@
   "author": {
     "name": ""
   },
+  "proxy": "http://localhost:5000/",
   "scripts": {
-    "serve": "nodemon server.js"
+    "start": "node server"
   },
   "dependencies": {
     "body-parser": "1.15.2",

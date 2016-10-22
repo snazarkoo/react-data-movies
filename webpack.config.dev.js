@@ -16,7 +16,17 @@ export default {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'src')
+    // every request made to 'locahost:3000/api/xxxx' will be proxyfied to 'http://localhost:7000/api/xxxx'
+    // proxy: {
+    //   "/api/*": {
+    //     target: "http://localhost:8000",
+    //     secure: false,
+    //     rewrite: function(req, options) {
+    //       debugger;
+    //       //you can handle rewrite here if you need to        
+    //     }
+    //   }
+    // }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
