@@ -6,7 +6,6 @@ var config = require('./config'); // get our config file
 var User = require('./models/userModel'); // get our mongoose model
 
 var app = express();
-// var port = process.env.PORT || 5000; // used to create, sign, and verify tokens
 var port = 5000; // used to create, sign, and verify tokens
 mongoose.connect(config.DB); // connect to database
 app.use(morgan('dev'));

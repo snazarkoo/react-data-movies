@@ -29,6 +29,7 @@
     "react-router-redux": "4.0.4",
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
+    "toastr": "^2.1.2",
     "what-input": "^3.0.0"
   },
   "devDependencies": {

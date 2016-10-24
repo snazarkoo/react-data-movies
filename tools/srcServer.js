@@ -20,9 +20,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.use("/api/*", function(req, res) {
-  console.log('11');
-  req.url = req.baseUrl; // Janky hack...
+app.use("/v1/*", function(req, res) {
+  req.url = req.baseUrl;
   proxy.web(req, res, {
     target: {
       port: 5000,
@@ -36,7 +35,6 @@ proxy.on('error', function(e) {
 });
 
 app.get('*', function(req, res, next) { 
-  console.log('index');
   res.sendFile(path.join( __dirname, '../src/index.html'));
 });
 

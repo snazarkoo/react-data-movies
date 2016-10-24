@@ -11,7 +11,7 @@ const ImageEl = ({movie, size}) => {
   };
   let getImage = (movie) => {
     if (movie.poster_path) {
-      return `${imgUrl.hyperImage}${imgUrl[size]}${movie.poster_path}`;
+      return `${imgUrl[size]}${movie.poster_path}`;
     }
     return img;
   };

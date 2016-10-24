@@ -109,3 +109,17 @@ body {
 .movie-page {
   padding: 15px 0;
 }
+
+.form-control {
+  float: left;
+  margin: 0 5px;
+}
+
+.auth {
+  float: right;
+  li {
+    &:nth-child(2) {
+      color: red;
+    }
+  }
+}

@@ -26,7 +26,7 @@ class MoviePage extends React.Component {
   }
   componentWillUpdate(nextProps) {
     if (nextProps.routeParams.id !== this.props.routeParams.id) {
-      this.getData();
+      this.getData(nextProps.routeParams.id);
     }
   }
   updateCommentState(event) {
@@ -69,8 +69,8 @@ class MoviePage extends React.Component {
     return formIsValid;
   }
 
-  getData() {
-    const movieId = this.props.routeParams.id;
+  getData(id) {
+    const movieId = id || this.props.routeParams.id;
     this.props.movieActions.loadMovie(movieId);
     this.props.commentActions.loadComments(movieId);
   }

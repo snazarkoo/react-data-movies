@@ -2,9 +2,11 @@ import React, {PropTypes} from 'react';
 
 const Logout = ({onLogoutClick}) => {
     return (
-      <button onClick={onLogoutClick} className="btn btn-primary">
-        Logout
-      </button>
+      <ul className="menu">
+        <li onClick={onLogoutClick} className="btn btn-primary">
+          <a>Logout</a>
+        </li>
+      </ul>
     )
 }
 

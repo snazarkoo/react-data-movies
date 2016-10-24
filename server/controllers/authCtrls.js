@@ -20,13 +20,12 @@ exports.signup = function(req, res) {
           if (err) throw err;
 
           console.log('User saved successfully');
-          console.log(user);
           saveUserHandlerSuccess(user, res);
         });
       } else {
-        console.log('User not saved');
         res.status(400).json({
-          success: false
+          success: false,
+          message: 'User not saved'
         });
       }
     })

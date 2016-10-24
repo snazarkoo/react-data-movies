@@ -7,7 +7,8 @@
   },
   "proxy": "http://localhost:5000/",
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "serve": "nodemon server.js"
   },
   "dependencies": {
     "body-parser": "1.15.2",

@@ -110,7 +110,6 @@ class Header extends React.Component {
                {!isAuthenticated &&
                  <AuthForm
                    onChange={this.updateCredState}
-                   errorMessage={errorMessage}
                    onLoginClick={this.onLoginClick}
                    onSignUpClick={this.onSignUpClick} />
                }
@@ -146,8 +145,7 @@ Header.propTypes = {
   movieActions: PropTypes.object,
   authActions: PropTypes.object,
   movies: PropTypes.array,
-  isAuthenticated: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

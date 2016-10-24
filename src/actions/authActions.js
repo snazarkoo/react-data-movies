@@ -2,6 +2,8 @@
 // import { CALL_API } from './middleware/api'
 import * as types from '../constants/actionTypesConst';
 import * as api from '../constants/urlConst';
+import toastr from 'toastr';
+toastr.options.positionClass = 'toast-bottom-right';
 
 function requestAuth(creds) {
   return {
@@ -61,7 +63,7 @@ export function loginUser(creds) {
   return dispatch => {
     // We dispatch requestAuth to kickoff the call to the API
     dispatch(requestAuth(creds))
-    return fetch(`${api.BASE_URL_CUSTOM}authenticate`, config)
+    return fetch(`/v1/authenticate`, config)
       .then(response =>
         response.json()
         .then(user => ({ user, response }))
@@ -69,6 +71,7 @@ export function loginUser(creds) {
         if (!response.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
+          toastr.error(user.message);
           dispatch(authError(user.message))
           return Promise.reject(user)
         }
@@ -105,16 +108,18 @@ export function signUpUser(creds) {
   
   return dispatch => {
     dispatch(requestAuth(creds))
-    return fetch(`${api.BASE_URL_CUSTOM}signup`, config)
+    return fetch(`/v1/signup`, config)
       .then(response =>
         response.json()
         .then(user => ({ user, response }))
       ).then(({ user, response }) =>  {
         if (!response.ok) {
+          toastr.error(user.message);
           dispatch(authError(user.message))
           return Promise.reject(user)
         }
         else {
+          toastr.success("User created");
           localStorage.setItem('user', JSON.stringify(user));
           dispatch(receiveAuth(user));
         }

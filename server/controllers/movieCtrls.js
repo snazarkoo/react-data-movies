@@ -37,36 +37,3 @@ exports.addCommentByMovieId = function(req, res, next) {
     });
     
 };
-
-exports.delete = function(req, res) {
-    var id = req.params.id;
-    Movie.remove({
-        'id': id
-    }, function(err, result) {
-        return res.send({
-            status: 200,
-            msg: 'Success!'
-        });
-    });
-};
-
-exports.update = function(req, res) {
-    Movie.findOne({
-        'id': req.params.id
-    }, function(err, employee) {
-        employee.firstname = req.body.firstname;
-        employee.lastname = req.body.lastname;
-        employee.age = req.body.age;
-        employee.position = req.body.position;
-        employee.skill = req.body.skill;
-        employee.language_level = req.body.language_level;
-        employee.experience = req.body.experience;
-        employee.save(function(err) {
-            res.send({
-                status: 200,
-                message: 'employee updated!'
-            });
-        });
-
-    });
-}

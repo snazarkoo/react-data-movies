@@ -1,6 +1,7 @@
 import * as types from '../constants/actionTypesConst';
 import * as api from '../constants/urlConst';
 import {beginAjaxCall} from './ajaxStatusActions.js';
+import toastr from 'toastr';
 
 export function loadCommentsSuccess(comments) {
   return {type: types.LOAD_COMMENTS_SUCCESS, comments};
@@ -13,7 +14,7 @@ export function createCommentSuccess(comment) {
 export function loadComments(movieId) {
   return function(dispatch) {
     return $.ajax({
-      url: `/api/movie/${movieId}/comments`,
+      url: `/v1/movie/${movieId}/comments`,
       type: 'get',
       success: function(data) {
         let comments = data;
@@ -32,7 +33,7 @@ export function createComment(movieId, commentConf={}) {
   commentConf.user = user;
   return function(dispatch) {
     return $.ajax({
-      url: `/api/movie/${movieId}/comment`,
+      url: `/v1/movie/${movieId}/comment`,
       type: 'post',
       data: JSON.stringify(commentConf),
       contentType: "application/json",

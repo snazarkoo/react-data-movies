@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 
-const Login = ({onLoginClick, onSignUpClick, errorMessage, onChange}) => {
+const Login = ({onLoginClick, onSignUpClick, onChange}) => {
   return (
     <form>
       <input type="text" name="username"
         className="form-control"
         placeholder="Username"
-        pattern="[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]"
         onChange={onChange}
         required />
       <input type="password" name="password"
@@ -14,19 +13,11 @@ const Login = ({onLoginClick, onSignUpClick, errorMessage, onChange}) => {
         placeholder="Username"
         onChange={onChange} 
         required />
-      <input
-        type="button"
-        onClick={onLoginClick}
-        className="btn btn-primary"
-        value="Login" />
-      <input
-        type="button"
-        onClick={onSignUpClick}
-        className="btn btn-primary"
-        value="Sign Up" />
-      {errorMessage &&
-        <p style={{color:"red"}}>{errorMessage}</p>
-      }
+      <ul className="menu auth">
+        <li onClick={onLoginClick} ><a>Login</a></li>
+        <li>or</li>
+        <li onClick={onSignUpClick}><a>Sign Up</a></li>
+      </ul>
     </form>
   );
 };
@@ -34,7 +25,6 @@ const Login = ({onLoginClick, onSignUpClick, errorMessage, onChange}) => {
 Login.propTypes = {
   onLoginClick: PropTypes.func.isRequired,
   onSignUpClick: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string,
   onChange: PropTypes.func
 };
 

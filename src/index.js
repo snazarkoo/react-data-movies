@@ -13,7 +13,7 @@ import 'script!jquery';
 import 'script!what-input';
 import 'script!foundation-sites';
 import './styles/styles.scss';
-// import '../node_modules/toastr/build/toastr.min.css';
+import '../node_modules/toastr/build/toastr.min.css';
 
 const store = configureStore();
 

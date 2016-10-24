@@ -87,10 +87,18 @@ export function loadBestMovies() {
 export function loadMovie(movieId) {
   return function(dispatch) {
     dispatch(beginAjaxCall());
-    return $.ajax(`https:////api.themoviedb.org/3/movie/${movieId}?api_key=54abcaff808fc3d0354601f6f513f7ba`).then(data => {
-      dispatch(loadMovieSuccess(data));
-    }).fail(error => {
-      console.log(error);
+    return $.ajax({
+      url: `${api.BASE_URL}${api.URL_FIND_MOVIE}/${movieId}`,
+      type: 'get',
+      data: {
+        api_key: conf.API_KEY
+      },
+      success: function(data) {
+        dispatch(loadMovieSuccess(data));
+      },
+      error: function(error) {
+        console.warn(error);
+      }
     });
   };
 }
