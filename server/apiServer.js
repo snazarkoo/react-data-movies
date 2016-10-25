@@ -1,9 +1,9 @@
-var bodyParser  = require('body-parser');
-var morgan = require('morgan');
-var mongoose = require('mongoose');
-var config = require('./config'); // get our config file
-var User = require('./models/userModel'); // get our mongoose model
-var routes = require('./routes');
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import mongoose from 'mongoose';
+import {config} from './config'; // get our config file
+import User from './models/userModel'; // get our mongoose model
+import routes from './routes';
 
 export function apiServer(app) {
   mongoose.connect(config.DB); // connect to database
@@ -16,4 +16,3 @@ export function apiServer(app) {
 
   routes(app);
 }
-

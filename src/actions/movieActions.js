@@ -2,6 +2,8 @@ import * as types from '../constants/actionTypesConst';
 import * as api from '../constants/urlConst';
 import * as conf from '../constants/confConst';
 import {beginAjaxCall} from './ajaxStatusActions.js';
+import toastr from 'toastr';
+toastr.options.positionClass = 'toast-bottom-right';
 
 export function loadMoviesSuccess(movies) {
   return {type: types.LOAD_MOVIES_SUCCESS, movies};
@@ -34,7 +36,7 @@ export function loadMovies(filmTilte) {
         dispatch(loadMoviesSuccess(movies));
       },
       error: function(error) {
-        console.warn(error);
+        toastr.error(error);
       }
     });
   };
@@ -57,7 +59,7 @@ export function loadDiscoveredMovies(year=2016, page=1) {
         dispatch(loadDiscoveredMoviesSuccess(discoveredMovies));
       },
       error: function(error) {
-        console.warn(error);
+        toastr.error(error);
       }
     });
   };
@@ -78,7 +80,7 @@ export function loadBestMovies() {
         dispatch(loadBestMoviesSuccess(bestMovies));
       },
       error: function(error) {
-        console.warn(error);
+        toastr.error(error);
       }
     });
   };
@@ -97,7 +99,7 @@ export function loadMovie(movieId) {
         dispatch(loadMovieSuccess(data));
       },
       error: function(error) {
-        console.warn(error);
+        toastr.error(error);
       }
     });
   };

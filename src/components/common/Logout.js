@@ -7,11 +7,11 @@ const Logout = ({onLogoutClick}) => {
           <a>Logout</a>
         </li>
       </ul>
-    )
-}
+    );
+};
 
 Logout.propTypes = {
   onLogoutClick: PropTypes.func.isRequired
-}
+};
 
 export default Logout;

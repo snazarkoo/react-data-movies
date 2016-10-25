@@ -1,6 +1,7 @@
 import * as types from '../constants/actionTypesConst';
 import * as api from '../constants/urlConst';
 import toastr from 'toastr';
+toastr.options.positionClass = 'toast-bottom-right';
 
 export function loadCommentsSuccess(comments) {
   return {type: types.LOAD_COMMENTS_SUCCESS, comments};
@@ -20,7 +21,7 @@ export function loadComments(movieId) {
         dispatch(loadCommentsSuccess(comments));
       },
       error: function(error) {
-        console.warn(error);
+        toastr.error(error);
       }
     });
   };
@@ -41,7 +42,7 @@ export function createComment(movieId, commentConf={}) {
         dispatch(createCommentSuccess(comment));
       },
       error: function(error) {
-        console.warn(error);
+        toastr.error(error);
       }
     });
   };

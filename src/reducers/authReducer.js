@@ -11,25 +11,25 @@ export default function auth(state = {
         isFetching: true,
         isAuthenticated: false,
         user: action.creds
-      })
+      });
     case types.AUTH_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
         errorMessage: ''
-      })
+      });
     case types.AUTH_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: false,
         errorMessage: action.message
-      })
+      });
     case types.LOGOUT_SUCCESS:
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false
-      })
+      });
     default:
-      return state
+      return state;
     }
 }

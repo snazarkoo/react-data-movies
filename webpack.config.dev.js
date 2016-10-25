@@ -15,35 +15,35 @@ export default {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  devServer: {
-    // every request made to 'locahost:3000/api/xxxx' will be proxyfied to 'http://localhost:7000/api/xxxx'
-    // proxy: {
-    //   "/api/*": {
-    //     target: "http://localhost:8000",
-    //     secure: false,
-    //     rewrite: function(req, options) {
-    //       debugger;
-    //       //you can handle rewrite here if you need to        
-    //     }
-    //   }
-    // }
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, 
+    loaders: [{
+        test: /\.js$/,
         include: path.join(__dirname, 'src'),
-        exclude: /node_modules/, loaders: ['babel']},
-      {test: /(\.scss)$/, loaders: ['style', 'css', 'sass']},
-      {test: /(\.css)$/, loaders: ['style', 'css']},
-      { test: /\.(jpe?g|png|gif|svg)$/i, loader: 'url?limit=10000!img?progressive=true' },
-      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
-      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
-      {test: /\.(woff|woff2)$/, loader: "url?limit=10000&mimetype=application/font-woff"}
-
+        exclude: /node_modules/,
+        loaders: ['babel']
+      }, {
+        test: /(\.scss)$/,
+        loaders: ['style', 'css', 'sass']
+      }, {
+        test: /(\.css)$/,
+        loaders: ['style', 'css']
+      }, {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'url?limit=10000!img?progressive=true'
+      }, {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/font-woff"
+      }, {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/font-woff"
+      }, {
+        test: /\.(woff|woff2)$/,
+        loader: "url?limit=10000&mimetype=application/font-woff"
+      }
     ]
   }
 };

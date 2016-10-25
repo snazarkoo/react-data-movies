@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
-var MovieSchema = new Schema({
+const MovieSchema = new Schema({
   id: Number,
   comments: [{
     user: {
@@ -12,8 +12,8 @@ var MovieSchema = new Schema({
     updatedAt: {
       type: Date,
       default: Date.now
-    },
+    }
   }]
 });
 
-module.exports = mongoose.model('Movie', MovieSchema);
+export default mongoose.model('Movie', MovieSchema);

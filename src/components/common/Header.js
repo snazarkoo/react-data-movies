@@ -41,7 +41,7 @@ class Header extends React.Component {
     this.props.authActions.signUpUser(cred);
   }
   onLogoutClick() {
-    this.props.authActions.logoutUser()
+    this.props.authActions.logoutUser();
   }
   updateCredState(event) {
     const field = event.target.name;
@@ -78,7 +78,7 @@ class Header extends React.Component {
     });
   }
   render() {
-    const {isAuthenticated, errorMessage, authActions} = this.props;
+    const {isAuthenticated, authActions} = this.props;
 
     let dropDownList;
     if (this.props.movies && this.props.movies.length > 0) {

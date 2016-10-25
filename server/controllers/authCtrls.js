@@ -1,10 +1,9 @@
-var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var User = require('../models/userModel');
-var config = require('../config'); // get our config file
+import jwt from 'jsonwebtoken'; // used to create, sign, and verify tokens
+import User from '../models/userModel';
+import {config} from '../config'; // get our config file
 
-exports.signup = function(req, res) {
-  var body = req.body;
-  console.log(body);
+export function signup(req, res) {
+  const body = req.body;
   if (body.username && body.password) {
     User.findOne({
       username: body.username
@@ -12,14 +11,12 @@ exports.signup = function(req, res) {
       if (err) throw err;
 
       if (!user) {
-        var user = new User({
+        const user = new User({
           username: body.username,
           password: body.password
         });
         user.save(function(err, user) {
           if (err) throw err;
-
-          console.log('User saved successfully');
           saveUserHandlerSuccess(user, res);
         });
       } else {
@@ -28,11 +25,11 @@ exports.signup = function(req, res) {
           message: 'User not saved'
         });
       }
-    })
+    });
   }
 }
 
-exports.authenticate = function(req, res) {
+export function authenticate(req, res) {
   User.findOne({
     username: req.body.username
   }, function(err, user) {
@@ -51,19 +48,19 @@ exports.authenticate = function(req, res) {
           message: 'Authentication failed. Wrong password.'
         });
       } else {
-        saveUserHandlerSuccess(user, res)
+        saveUserHandlerSuccess(user, res);
       }
     }
   });
 }
 
 function saveUserHandlerSuccess(user, res) {
-  var id_token = jwt.sign(user, config.SECRET, {
+  const id_token = jwt.sign(user, config.SECRET, {
     expiresIn: 60 * 60 // expires in 1 hour
   });
 
   res.json({
-    id_token: id_token,
+    id_token,
     username: user.username,
     userId: user._id
   });

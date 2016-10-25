@@ -26,16 +26,30 @@ export default {
     new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, 
+    loaders: [{
+        test: /\.js$/,
         include: path.join(__dirname, 'src'),
-        exclude: /node_modules/, loaders: ['babel']},
-      {test: /(\.scss)$/, loader: ExtractTextPlugin.extract('style', 'css!sass')},
-      {test: /(\.css)$/, loader: ExtractTextPlugin.extract('css')},
-      { test: /\.(jpe?g|png|gif|svg)$/i, loader: 'url?limit=10000!img?progressive=true' },
-      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
-      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
-      {test: /\.(woff|woff2)$/, loader: 'url?limit=10000&mimetype=application/font-woff'}
+        exclude: /node_modules/,
+        loaders: ['babel']
+      }, {
+        test: /(\.scss)$/,
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
+      }, {
+        test: /(\.css)$/,
+        loader: ExtractTextPlugin.extract('css')
+      }, {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'url?limit=10000!img?progressive=true'
+      }, {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff'
+      }, {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff'
+      }, {
+        test: /\.(woff|woff2)$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff'
+      }
 
     ]
   }

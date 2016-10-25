@@ -5,7 +5,7 @@ import ImageEl from './ImageEl.js';
 const ListEl = ({movie, size}) => {
   let changeState = () => {
     browserHistory.push(`/movie/${movie.id}`);
-  }
+  };
   return (
     <li className="column" key={movie.id}>
       <a onMouseDown={changeState} href={`/movie/${movie.id}`}>

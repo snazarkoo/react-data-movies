@@ -6,7 +6,7 @@ import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
-import '../node_modules/foundation-sites/dist/foundation.css'
+import '../node_modules/foundation-sites/dist/foundation.css';
 
 // load jquery and foundation in the window scope
 import 'script!jquery';
