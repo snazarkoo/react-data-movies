@@ -1,6 +1,5 @@
 import * as types from '../constants/actionTypesConst';
 import * as api from '../constants/urlConst';
-import {beginAjaxCall} from './ajaxStatusActions.js';
 import toastr from 'toastr';
 
 export function loadCommentsSuccess(comments) {

@@ -1,4 +1,4 @@
 module.exports = {
   SECRET: 'iLoveReact',
-  DB: 'mongodb://localhost/movies'
+  DB: process.env.MONGODB_URI || 'mongodb://localhost/movies'
 };
