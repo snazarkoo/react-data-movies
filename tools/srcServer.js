@@ -23,7 +23,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 apiServer(app);
 app.set('view engine', 'ejs');
 
-app.get(['/movies', '/', 'movie/:id'], function(req, res, next) {
+app.get(['/movies', '/', '/movie/:id'], function(req, res, next) {
   res.sendFile(path.join( __dirname, '../src/index.html'));
 });
 
