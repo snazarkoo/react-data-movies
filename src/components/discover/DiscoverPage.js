@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {Link, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 import * as videoActions from '../../actions/movieActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';

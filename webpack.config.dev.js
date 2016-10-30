@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export default {
   devtool: 'source-map',
@@ -17,7 +18,8 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin('styles.css'),
   ],
   module: {
     loaders: [{
@@ -27,10 +29,10 @@ export default {
         loaders: ['babel']
       }, {
         test: /(\.scss)$/,
-        loaders: ['style', 'css', 'sass']
+        loader: ExtractTextPlugin.extract('style', 'css!sass')
       }, {
         test: /(\.css)$/,
-        loaders: ['style', 'css']
+        loader: ExtractTextPlugin.extract('css')
       }, {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'url?limit=10000!img?progressive=true'
